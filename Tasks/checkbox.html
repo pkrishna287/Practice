@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Checkbox</title>
+  <style>
+    /* Hide the default checkbox */
+    .custom-checkbox input[type="checkbox"] {
+      display: none;
+    }
+
+    /* Create a custom checkmark */
+    .custom-checkbox {
+      display: inline-block;
+      position: relative;
+      padding-left: 30px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .custom-checkbox .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 20px;
+      width: 20px;
+      background-color: #ccc;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    /* Checkmark when the checkbox is checked */
+    .custom-checkbox input[type="checkbox"]:checked + .checkmark {
+      background-color: #2196F3;
+    }
+
+    /* Add a tick mark when checked */
+    .custom-checkbox .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+
+    .custom-checkbox input[type="checkbox"]:checked + .checkmark:after {
+      display: block;
+    }
+
+    /* Style the tick mark */
+    .custom-checkbox .checkmark:after {
+      left: 7px;
+      top: 3px;
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+  </style>
+</head>
+<body>
+
+  <label class="custom-checkbox">
+    <input type="checkbox" />
+    <span class="checkmark"></span>
+    Check me
+  </label>
+
+</body>
+</html>

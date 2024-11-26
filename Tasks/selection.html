@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <input type="number" id="input" placeholder="number">
+   <button id="save">Save</button>
+   <div class="table-section">
+    <table>
+        <tr>
+            <td><input type="checkbox" class="checkbox"></td>
+            <td class="number">5</td>
+            <td><button class="increment">+</button></td>
+            <td><button class="decrement">-</button></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" class="checkbox"></td>
+            <td class="number">6</td>
+            <td><button class="increment">+</button></td>
+            <td><button class="decrement">-</button></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" class="checkbox"></td>
+            <td class="number">7</td>
+            <td><button class="increment">+</button></td>
+            <td><button class="decrement">-</button></td>
+        </tr>
+        <tr>
+            <td><input type="checkbox" class="checkbox"></td>
+            <td class="number">8</td>
+            <td><button class="increment">+</button></td>
+            <td><button class="decrement">-</button></td>
+        </tr>
+    </table>
+</div>
+<script>
+    const save = document.getElementById('save');
+    const input = document.getElementById('input');
+    const checkboxes = document.getElementsByClassName('checkbox');
+    const increment = document.getElementsByClassName('increment');
+    const decrement = document.getElementsByClassName('decrement');
+    const number = document.getElementsByClassName('number');
+
+    for (let i = 0; i < increment.length; i++) {
+        increment[i].addEventListener('click', function() {
+                let currentValue = parseInt(number[i].innerText);
+                number[i].innerText = currentValue + 1;
+            });
+        }
+        for (let i = 0; i < decrement.length; i++) {
+            decrement[i].addEventListener('click', function() {
+                let currentValue = parseInt(number[i].innerText);
+                number[i].innerText = currentValue - 1;
+            });
+        }
+        save.addEventListener('click', function() {
+            const incrementValue = parseInt(input.value);
+            if (!isNaN(incrementValue)) { 
+                for (let i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].checked) { 
+                        let currentNumber = parseInt(number[i].innerText);
+                        number[i].innerText = currentNumber + incrementValue; 
+                    }}}
+        });
+</script> 
+</body>
+</html>

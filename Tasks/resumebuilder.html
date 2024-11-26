@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+    <style>
+        label,input[name="submitbtn"]{
+            display: block;
+            margin-top: 10px;
+        }
+        input{
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form name="myForm" method="post" onsubmit="handleSubmit(event)">
+    <label for="name">Full Name</label>
+    <input type="text" id="name" placeholder="Enter your name" required>
+    
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="Enter your email" required>
+    
+    <label for="phone">Phone</label>
+    <input type="tel" id="phone" placeholder="Enter your phonenumber" required>
+    <label for="education">Education</label>
+    <div id="education">
+
+        <input type="text" placeholder="Degree"/>
+        <input type="text" placeholder="School/College"/>
+        <input type="text" placeholder="Year"/>
+
+    </div>
+    <button onclick="append('education')">Add More</button>
+    <label>Skills</label>
+    <div id="skills">
+
+        <input type="text" placeholder="Skills"/>
+
+    </div>
+    <button onclick="append('skills')">Add skills</button>
+    <label>Experience</label>
+    <div id="experience">
+
+        <input type="text" placeholder="Comapny name"/>
+        <input type="text" placeholder="Duration"/>
+        <input type="text" placeholder="describe experience"/>
+
+    </div>
+    <button onclick="append('experience')">Add Experience</button>
+    <input type="submit" value="Submit" name="submitbtn"><button> Remove </button>
+
+</form>
+    <script>
+
+    function append(Id) {
+        let a = document.getElementById(Id);  
+        let clone = a.cloneNode(true);        
+        let button = document.querySelector(`button[onclick="append('${Id}')"]`); 
+        a.parentNode.insertBefore(clone, button);
+    }
+    function handleSubmit(event) {
+            event.preventDefault(); 
+            const formData = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                phone: document.getElementById("phone").value,
+                education: collectData('education'),
+                skills: collectData('skills'),
+                experience: collectData('experience')
+            };
+            console.log(JSON.stringify(formData, null, 2));
+        }
+
+        function collectData(sectionId) {
+            const section = document.querySelectorAll(`#${sectionId} input`);
+            let data = [];
+            section.forEach(input => data.push(input.value));
+            return data;
+        }
+
+       
+    </script>
+</body>
+</html>

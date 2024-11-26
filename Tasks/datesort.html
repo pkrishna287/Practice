@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const data = [
+  { "date": "2024-09-01", "status": "Completed" },
+  { "date": "2024-09-02", "status": "Pending" },
+  { "date": "2024-09-03", "status": "In Progress" },
+  { "date": "2024-09-04", "status": "Completed" },
+  { "date": "2024-09-05", "status": "Pending" },
+  { "date": "2024-09-06", "status": "Completed" },
+  { "date": "2024-09-07", "status": "In Progress" },
+  { "date": "2024-09-08", "status": "Pending" },
+  { "date": "2024-09-09", "status": "Completed" },
+  { "date": "2024-09-10", "status": "In Progress" },
+  { "date": "2024-09-11", "status": "Completed" },
+  { "date": "2024-09-12", "status": "Pending" },
+  { "date": "2024-09-13", "status": "In Progress" },
+  { "date": "2024-09-14", "status": "Completed" },
+  { "date": "2024-09-15", "status": "Pending" },
+  { "date": "2024-09-16", "status": "In Progress" },
+  { "date": "2024-09-17", "status": "Completed" },
+  { "date": "2024-09-18", "status": "Pending" },
+  { "date": "2024-09-19", "status": "Completed" },
+  { "date": "2024-09-20", "status": "In Progress" },
+  { "date": "2024-09-21", "status": "Pending" },
+  { "date": "2024-09-22", "status": "Completed" },
+  { "date": "2024-09-23", "status": "In Progress" },
+  { "date": "2024-09-24", "status": "Pending" },
+  { "date": "2024-09-25", "status": "Completed" },
+  { "date": "2024-09-25", "status": "Pending" },
+  { "date": "2024-09-25", "status": "In Progress" }
+];
+const sortedData = data.sort((a, b) => {
+  const datesort = new Date(b.date) - new Date(a.date);
+   if (a.date==b.date) {
+    return a.status.localeCompare(b.status);
+  }
+  return datesort; 
+});
+
+console.log(sortedData);
+
+  </script>
+</body>
+</html>
+
+
+  

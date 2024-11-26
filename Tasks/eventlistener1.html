@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Counter</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f3f4f6;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .counter-container {
+            display: flex;
+            gap: 20px;
+        }
+        .counter {
+            background: white;
+            padding: 20px 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .counter h1 {
+            margin: 0;
+            font-size: 40px;
+            font-weight: bold;
+        }
+        .counter p {
+            margin: 5px 0 0;
+            font-size: 18px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="counter-container">
+        <div class="counter">
+            <h1 id="projects">0</h1>
+            <p>Succeeded Projects</p>
+        </div>
+        <div class="counter">
+            <h1 id="hours">0</h1>
+            <p>Working Hours Spent</p>
+        </div>
+        <div class="counter">
+            <h1 id="clients">0</h1>
+            <p>Happy Clients</p>
+        </div>
+    </div>
+    <script>
+        function animateValue(id, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                document.getElementById(id).innerText = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Start animations
+        animateValue("projects", 0, 500, 20000); 
+        animateValue("hours", 0, 17140, 25000); 
+        animateValue("clients", 0, 1500, 20000); 
+    </script>
+</body>
+</html>

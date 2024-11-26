@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Users</title>
+</head>
+<body>
+    <div class="user"></div>
+
+    <script>
+        function displayUsers(users) {
+            const userContainer = document.querySelector('.user');
+            userContainer.innerHTML = ''; 
+
+            users.forEach(user => {
+                const userCard = document.createElement('div');
+                userCard.classList.add('user-card');
+                const maskedPhone = user.phone.slice(-3).padStart(user.phone.length, '*');
+                userCard.innerHTML = `
+                    <h2>${user.name}</h2>
+                    <p><strong>Username:</strong> ${user.username}</p>
+                    <p><strong>Email:</strong> ${user.email}</p>
+                    <p><strong>Phone:</strong> ${maskedPhone}</p>
+                    <p><strong>Website:</strong> <a href="http://${user.website}" target="_blank">${user.website}</a></p>
+                    <p><strong>Company:</strong> ${user.company.name}</p>
+                    <p><strong>Address:</strong> ${user.address.suite}, ${user.address.street}, ${user.address.city}, ${user.address.zipcode}</p>
+                `;
+
+                // Append the user card to the container
+                userContainer.appendChild(userCard);
+            });
+        }
+
+        // Fetch users and display them
+        fetch('https://jsonplaceholder.typicode.com/users')
+        .then(response => response.json())
+        .then(users => displayUsers(users))
+        .catch(error => console.error('Error fetching users:', error));
+    </script>
+</body>
+</html>
